@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-var s = Stack{}
+var s = &Stack{}
 
 func init() {
 	s.Push("1")
@@ -15,5 +15,15 @@ func init() {
 
 func TestStack(t *testing.T) {
 	assert.Equal(t, 3, s.Len())
-	assert.Equal(t, 2, s.Pop().(int))
+	value, err := s.Pop()
+	assert.Nil(t, err)
+	assert.Equal(t, 2, value)
+}
+
+func TestStack_Empty(t *testing.T) {
+	s = &Stack{}
+	value, err := s.Pop()
+	assert.NotNil(t, err)
+	assert.Nil(t, value)
+
 }

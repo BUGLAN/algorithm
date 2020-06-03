@@ -1,4 +1,4 @@
-module github.com/BUGLAN/algorithm.git
+module github.com/BUGLAN/algorithm
 
 go 1.13
 
