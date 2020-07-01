@@ -32,3 +32,7 @@ func (s *Stack) Pop() (value interface{}, err error) {
 	s.items = s.items[:len(s.items)-1]
 	return value, err
 }
+
+func (s *Stack) IsEmpty() bool {
+	return len(s.items) == 0
+}
