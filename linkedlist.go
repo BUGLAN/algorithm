@@ -1,3 +1,6 @@
+/*
+单链表, 线程不安全
+ */
 package algorithm
 
 type ListNode struct {
@@ -19,4 +22,8 @@ func (l *ListNode) Peek() (value interface{}, err error) {
 
 func (l *ListNode) Reverse() *ListNode {
 	return nil
+}
+
+func (l *ListNode) Insert(n int) {
+
 }

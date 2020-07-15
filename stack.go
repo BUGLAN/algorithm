@@ -1,4 +1,8 @@
+/*
+栈, 线程安全
+ */
 package algorithm
+
 
 import (
 	"errors"
