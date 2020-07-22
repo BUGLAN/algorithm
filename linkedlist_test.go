@@ -41,3 +41,18 @@ func TestLinkedList(t *testing.T) {
 	l.Insert(1, 8)
 	assert.Equal(t, 8, l.head.Next.Next.Val.(int))
 }
+
+func TestLinkedList_Reverse(t *testing.T) {
+	l := &LinkedList{}
+	l.Push(1)
+	l.Push(2)
+	l.Push(3)
+
+	l.Reverse()
+	val, _ := l.Pop()
+	assert.Equal(t, 1, val)
+	val, _ = l.Pop()
+	assert.Equal(t, 2, val)
+	val, _ = l.Pop()
+	assert.Equal(t, 3, val)
+}

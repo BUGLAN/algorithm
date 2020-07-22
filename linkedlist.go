@@ -75,22 +75,6 @@ func (l *LinkedList) Peek() (value interface{}, err error) {
 	return l.head.Val, nil
 }
 
-// Reverse 反转链表, 使用一个中间变量记录即可
-func (l *LinkedList) Reverse() *LinkedList {
-	if l.length <= 1 {
-		return l
-	}
-
-	node := l.head
-	var pre *Node
-	for node != nil {
-		node.Next, pre, node = pre, node, node.Next
-	}
-	l.head, l.tail = l.tail, l.head
-
-	return nil
-}
-
 // Insert 插入第几个节点之后
 func (l *LinkedList) Insert(n int, value interface{}) *LinkedList {
 	node := &Node{
@@ -121,4 +105,20 @@ func (l *LinkedList) Insert(n int, value interface{}) *LinkedList {
 
 func (l *LinkedList) Len() int {
 	return l.length
+}
+
+// Reverse 反转链表, 使用一个中间变量记录即可
+func (l *LinkedList) Reverse() {
+	// 无需反转
+	if l.length <= 1 {
+		return
+	}
+
+	node := l.head
+	var pre *Node
+	for node != nil {
+		node.Next, pre, node = pre, node, node.Next
+	}
+	l.head, l.tail = l.tail, l.head
+
 }
