@@ -1,8 +1,9 @@
 package algorithm
 
 import (
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 var s = &Stack{}
@@ -25,5 +26,10 @@ func TestStack_Empty(t *testing.T) {
 	value, err := s.Pop()
 	assert.NotNil(t, err)
 	assert.Nil(t, value)
+}
 
+func TestStack_Peak(t *testing.T) {
+	s = &Stack{}
+	s.Push(1)
+	assert.Equal(t, 1, s.Peak().(int))
 }

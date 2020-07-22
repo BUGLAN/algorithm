@@ -26,5 +26,4 @@ func SelectSort(list []int) []int {
 	}
 
 	return list
-
 }

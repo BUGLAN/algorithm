@@ -16,11 +16,12 @@ func quickSort(list []int) {
 
 	for left < right {
 		// 大于基准
-		if list[left] < pivot {
+		switch {
+		case list[left] < pivot:
 			left++
-		} else if list[right] > pivot {
+		case list[right] > pivot:
 			right--
-		} else {
+		default:
 			list[left], list[right] = list[right], list[left]
 			left++
 		}

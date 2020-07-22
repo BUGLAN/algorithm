@@ -12,7 +12,6 @@ func MergeSort(list []int) []int {
 	left := list[:middle]
 	right := list[middle:]
 	return mergeSort(MergeSort(left), MergeSort(right))
-
 }
 
 func mergeSort(left []int, right []int) []int {

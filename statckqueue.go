@@ -17,7 +17,7 @@ func (s *stack) Push(value int) {
 }
 
 func (s *stack) Pop() int {
-	if len(s.items) <= 0 {
+	if len(s.items) == 0 {
 		panic(errors.New("empty stack"))
 	}
 	value := s.items[len(s.items)-1]

@@ -18,13 +18,12 @@ func (q *Queue) Len() int {
 	q.RLock()
 	defer q.RUnlock()
 	return len(q.items)
-
 }
 
 func (q *Queue) Pop() (item interface{}, err error) {
 	q.RLock()
 	defer q.RUnlock()
-	if len(q.items) <= 0 {
+	if len(q.items) == 0 {
 		return nil, errors.New("pop from empty")
 	}
 

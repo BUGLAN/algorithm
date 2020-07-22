@@ -1,8 +1,7 @@
 /*
 栈, 线程安全
- */
+*/
 package algorithm
-
 
 import (
 	"errors"
@@ -29,7 +28,7 @@ func (s *Stack) Push(value interface{}) {
 func (s *Stack) Pop() (value interface{}, err error) {
 	s.Lock()
 	defer s.Unlock()
-	if len(s.items) <= 0 {
+	if len(s.items) == 0 {
 		return nil, errors.New("empty stack")
 	}
 	value = s.items[len(s.items)-1]
@@ -39,4 +38,11 @@ func (s *Stack) Pop() (value interface{}, err error) {
 
 func (s *Stack) IsEmpty() bool {
 	return len(s.items) == 0
+}
+
+func (s *Stack) Peak() interface{} {
+	if s.Len() <= 0 {
+		panic(errors.New("empty stack"))
+	}
+	return s.items[len(s.items)-1]
 }

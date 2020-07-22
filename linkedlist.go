@@ -47,7 +47,7 @@ func (l *LinkedList) Pop() (value interface{}, err error) {
 
 	if l.length == 1 {
 		l.length--
-		value := l.head.Val
+		value = l.head.Val
 		l.head, l.tail = nil, nil
 		return value, nil
 	}
@@ -97,15 +97,16 @@ func (l *LinkedList) Insert(n int, value interface{}) *LinkedList {
 		Val:  value,
 		Next: nil,
 	}
-	if n == 0 {
+	switch {
+	case n == 0:
 		node.Next = l.head
 		l.head = node
 		l.length++
-	} else if n > l.length {
+	case n > l.length:
 		l.tail.Next = node
 		l.tail = node
 		l.length++
-	} else {
+	default:
 		a := l.head
 		for i := 0; i < n; i++ {
 			a = a.Next
