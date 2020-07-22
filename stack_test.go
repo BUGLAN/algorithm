@@ -33,3 +33,20 @@ func TestStack_Peak(t *testing.T) {
 	s.Push(1)
 	assert.Equal(t, 1, s.Peak().(int))
 }
+
+func TestStack_OverTurn(t *testing.T) {
+	s = &Stack{}
+	s.Push(1)
+	s.Push(2)
+	s.Push(3)
+	ns := s.OverTurn()
+	var val interface{}
+	val, _ = ns.Pop()
+	assert.Equal(t, 1, val.(int))
+	val, _ = ns.Pop()
+	assert.Equal(t, 2, val.(int))
+	val, _ = ns.Pop()
+	assert.Equal(t, 3, val.(int))
+}
+
+

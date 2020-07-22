@@ -46,3 +46,13 @@ func (s *Stack) Peak() interface{} {
 	}
 	return s.items[len(s.items)-1]
 }
+
+// OverTurn 反装
+func (s *Stack) OverTurn() *Stack {
+	newStack := new(Stack)
+	for s.Len() != 0 {
+		val, _ := s.Pop()
+		newStack.Push(val)
+	}
+	return newStack
+}
