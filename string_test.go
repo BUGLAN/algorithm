@@ -35,7 +35,7 @@ func TestFullArrange(t *testing.T) {
 		args args
 		want []string
 	}{
-		{"正常的测试", args{"abc"}, []string{}},
+		{"正常的测试", args{"abc"}, []string{"abc", "acb", "bac", "bca", "cba", "cab"}},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
