@@ -41,3 +41,54 @@ func fullArrange(runes []rune, start int, res *[]string) {
 		}
 	}
 }
+
+// CommonSubSeq 最长公共子序列长度 动态规划
+func CommonSubSeq(s1, s2 string) int {
+	// 定义dp矩阵
+	dp := make([][]int, len(s1)+1)
+
+	for i := range dp {
+		dp[i] = make([]int, len(s2)+1)
+	}
+
+	for i := 1; i <= len(s1); i++ {
+		for j := 1; j <= len(s2); j++ {
+			if s1[i-1] == s2[j-1] {
+				dp[i][j] = dp[i-1][j-1] + 1
+			} else {
+				dp[i][j] = max(dp[i-1][j], dp[i][j-1])
+			}
+		}
+	}
+	return dp[len(s1)][len(s2)]
+}
+
+func max(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
+}
+
+// CommonSubString  公共最长子串长度
+func CommonSubString(s1, s2 string) int {
+	// 定义dp矩阵
+	dp := make([][]int, len(s1)+1)
+
+	for i := range dp {
+		dp[i] = make([]int, len(s2)+1)
+	}
+
+	var m int
+
+	for i := 1; i <= len(s1); i++ {
+		for j := 1; j <= len(s2); j++ {
+			if s1[i-1] == s2[j-1] {
+				dp[i][j] = dp[i-1][j-1] + 1
+			}
+
+			m = max(m, dp[i][j])
+		}
+	}
+	return m
+}
