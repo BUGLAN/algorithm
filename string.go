@@ -1,5 +1,9 @@
 package algorithm
 
+import (
+	"github.com/BUGLAN/algorithm/util"
+)
+
 // ReverseString 反转字符串
 func ReverseString(s string) string {
 	runes := []rune(s)
@@ -56,18 +60,11 @@ func CommonSubSeq(s1, s2 string) int {
 			if s1[i-1] == s2[j-1] {
 				dp[i][j] = dp[i-1][j-1] + 1
 			} else {
-				dp[i][j] = max(dp[i-1][j], dp[i][j-1])
+				dp[i][j] = util.Max(dp[i-1][j], dp[i][j-1])
 			}
 		}
 	}
 	return dp[len(s1)][len(s2)]
-}
-
-func max(a, b int) int {
-	if a > b {
-		return a
-	}
-	return b
 }
 
 // CommonSubString  公共最长子串长度
@@ -87,7 +84,7 @@ func CommonSubString(s1, s2 string) int {
 				dp[i][j] = dp[i-1][j-1] + 1
 			}
 
-			m = max(m, dp[i][j])
+			m = util.Max(m, dp[i][j])
 		}
 	}
 	return m
