@@ -1,7 +1,7 @@
 package algorithm
 
 import (
-	"github.com/BUGLAN/algorithm/util"
+	"github.com/BUGLAN/kit/compare"
 )
 
 // ReverseString 反转字符串
@@ -60,7 +60,7 @@ func CommonSubSeq(s1, s2 string) int {
 			if s1[i-1] == s2[j-1] {
 				dp[i][j] = dp[i-1][j-1] + 1
 			} else {
-				dp[i][j] = util.Max(dp[i-1][j], dp[i][j-1])
+				dp[i][j] = compare.MaxInt(dp[i-1][j], dp[i][j-1])
 			}
 		}
 	}
@@ -84,7 +84,7 @@ func CommonSubString(s1, s2 string) int {
 				dp[i][j] = dp[i-1][j-1] + 1
 			}
 
-			m = util.Max(m, dp[i][j])
+			m = compare.MaxInt(m, dp[i][j])
 		}
 	}
 	return m
