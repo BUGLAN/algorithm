@@ -7,7 +7,7 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
-// PreOrder 前序遍历: 先遍历根节点, 再遍历左子树
+// PreOrder 前序遍历: 先遍历根节点, 再遍历左子树, 再遍历右子树
 func PreOrder(root *TreeNode, list *[]int) {
 	if root == nil {
 		return
@@ -36,4 +36,28 @@ func BackOrder(root *TreeNode, list *[]int) {
 	BackOrder(root.Left, list)
 	BackOrder(root.Right, list)
 	*list = append(*list, root.Val)
+}
+
+// LayerOrder 层序遍历, 一层一层遍历子节点
+func LayerOrder(root *TreeNode, list *[]int) {
+	queue := make([]*TreeNode, 0)
+	if root == nil {
+		return
+	}
+	queue = append(queue, root)
+
+	var node *TreeNode
+	for len(queue) != 0 {
+		node = queue[0]
+
+		if node.Left != nil {
+			queue = append(queue, node.Left)
+		}
+
+		if node.Right != nil {
+			queue = append(queue, node.Right)
+		}
+		*list = append(*list, node.Val)
+		queue = queue[1:]
+	}
 }
