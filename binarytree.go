@@ -17,6 +17,23 @@ func PreOrder(root *TreeNode, list *[]int) {
 	PreOrder(root.Right, list)
 }
 
+//PreOrder2 非递归(深度优先算法) 前序遍历
+func PreOrder2(root *TreeNode, list *[]int) {
+	stack := make([]*TreeNode, 0)
+
+	for root != nil || len(stack) != 0 {
+		if root != nil {
+			*list = append(*list, root.Val)
+			stack = append(stack, root)
+			root = root.Left
+		}else {
+			node := stack[len(stack)-1]
+			stack = stack[:len(stack)-1]
+			root = node.Right
+		}
+	}
+}
+
 // InOrder 中序遍历: 先遍历左子树, 再遍历根节点, 再遍历左子树
 func InOrder(root *TreeNode, list *[]int) {
 	if root == nil {
@@ -25,6 +42,22 @@ func InOrder(root *TreeNode, list *[]int) {
 	InOrder(root.Left, list)
 	*list = append(*list, root.Val)
 	InOrder(root.Right, list)
+}
+
+// InOrder2 中序遍历非递归
+func InOrder2(root *TreeNode, list *[]int) {
+	stack := make([]*TreeNode, 0)
+	for root != nil || len(stack) != 0 {
+		if root != nil {
+			stack = append(stack, root)
+			root = root.Left
+		}else {
+			node := stack[len(stack)-1]
+			stack = stack[:len(stack)-1]
+			*list = append(*list, node.Val)
+			root = node.Right
+		}
+	}
 }
 
 // BackOrder 后序遍历: 先遍历左子树, 再遍右子树, 再遍历根
@@ -37,6 +70,33 @@ func BackOrder(root *TreeNode, list *[]int) {
 	BackOrder(root.Right, list)
 	*list = append(*list, root.Val)
 }
+
+// BackOrder2 后序遍历(非递归)
+func BackOrder2(root *TreeNode, list *[]int) {
+	stack := make([]*TreeNode, 0)
+	var visit *TreeNode
+	for root != nil || len(stack) !=0 {
+		for root != nil {
+			stack = append(stack, root)
+			root = root.Left
+		}
+
+		if len(stack) != 0 {
+			root = stack[len(stack) -1]
+			stack = stack[:len(stack)-1]
+
+			if root.Right == nil || visit == root.Right {
+				*list = append(*list, root.Val)
+				visit = root
+				root = nil
+			} else {
+				stack = append(stack, root)
+				root = root.Right
+			}
+		}
+	}
+}
+
 
 // LayerOrder 层序遍历, 一层一层遍历子节点
 func LayerOrder(root *TreeNode, list *[]int) {
